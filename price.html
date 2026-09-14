@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Price&Guide | tarme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F6F1E7; --fg: #2A2420; --fg-dim: #8A7F6E;
+    --line: #DDD2BE; --accent: #A6845C;
+  }
+  *{ box-sizing: border-box; }
+  body{ margin:0; background: var(--bg); color: var(--fg); font-family:'Zen Kaku Gothic New',sans-serif; font-weight:300; }
+  h1,h2,h3,p,div{ text-wrap: pretty; word-break: keep-all; overflow-wrap: break-word; }
+  header{
+    position: fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content: space-between; align-items:center;
+    padding: 20px 6vw; background: rgba(246,241,231,0.88);
+    backdrop-filter: blur(6px); border-bottom: 1px solid var(--line);
+  }
+  .logo img{ height:34px; display:block; }
+  nav{ display:flex; gap:32px; }
+  nav a{ color: var(--fg); text-decoration:none; font-size:0.78rem; letter-spacing:0.12em; opacity:.7; }
+  nav a.current, nav a:hover{ opacity:1; color: var(--accent); }
+
+  .page-head{ padding: 22vh 6vw 6vh; }
+  .page-head .eyebrow{ font-size:0.72rem; letter-spacing:0.2em; color: var(--fg-dim); text-transform: uppercase; }
+  .page-head h1{ font-family:'Zen Old Mincho',serif; font-weight:500; font-size: clamp(2rem,5vw,3rem); margin:10px 0 0; }
+
+  main{ padding: 4vh 6vw 0; max-width: 760px; }
+
+  .price-table{
+    border-top: 1px solid var(--line);
+    margin-top: 6vh;
+  }
+  .price-row{
+    display:flex; justify-content: space-between; align-items: baseline;
+    padding: 22px 0; border-bottom: 1px solid var(--line);
+  }
+  .price-row .label{ font-family:'Zen Old Mincho',serif; font-size:1.1rem; }
+  .price-row .value{ font-size: 1rem; color: var(--accent); }
+  .price-note{ font-size: 0.8rem; line-height: 2; color: var(--fg-dim); margin-top: 20px; }
+
+  .section-title{
+    font-family:'Zen Old Mincho',serif; font-weight:500; font-size: 1.3rem;
+    margin: 10vh 0 20px;
+  }
+
+  .space-grid{
+    display:grid; grid-template-columns: repeat(2,1fr); gap: 20px 40px;
+    margin-top: 4vh;
+  }
+  .space-grid div{ font-size: 0.85rem; color: var(--fg-dim); }
+  .space-grid strong{ display:block; color: var(--fg); font-family:'Zen Old Mincho',serif; font-size:1.4rem; font-weight:500; margin-bottom: 4px; }
+
+  .floorplan-wrap{
+    margin-top: 5vh;
+    border: 1px solid var(--line);
+    padding: 24px;
+    background: #fff;
+  }
+  .floorplan-wrap img{ display:block; width:100%; height:auto; }
+
+  .guide-list{
+    font-size: 0.85rem; line-height: 2.1; color: var(--fg-dim);
+    margin-top: 3vh;
+  }
+  .guide-list p{ margin: 0 0 1.6em; }
+
+  @media (max-width: 720px){
+    header{ padding:16px 6vw; } nav{ gap:18px; }
+    .space-grid{ grid-template-columns: 1fr; }
+  }
+
+  footer{
+    margin-top: 20vh; padding: 60px 6vw 44px; border-top: 1px solid var(--line);
+    display:flex; justify-content: space-between; flex-wrap:wrap; gap:24px;
+  }
+  footer .name{ font-family:'Zen Old Mincho',serif; font-size:1.1rem; }
+  footer .meta{ font-size:0.78rem; line-height:2; color: var(--fg-dim); }
+  footer a{ color: var(--fg-dim); text-decoration:none; }
+  footer a:hover{ color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/index.html"><img src="https://static.wixstatic.com/media/a74546_08fc45654d7343808443d3024b52e99a~mv2.jpg/v1/fill/w_323,h_123,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5047.jpg" alt="tarme"></a>
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/photos.html">Photos</a>
+    <a class="current" href="/price.html">Price&amp;Guide</a>
+    <a href="/access.html">Access</a>
+  </nav>
+</header>
+
+<div class="page-head">
+  <span class="eyebrow">料金・ご利用案内</span>
+  <h1>Price &amp; Guide</h1>
+</div>
+
+<main>
+  <div class="price-table">
+    <div class="price-row"><span class="label">スチール</span><span class="value">¥19,800 / 1h(税込)</span></div>
+    <div class="price-row"><span class="label">ムービー</span><span class="value">¥29,700 / 1h(税込)</span></div>
+  </div>
+  <p class="price-note">
+    ＊最低利用時間 4時間　＊基本ご利用時間 9:00〜18:00<br>
+    ＊基本ご利用時間以外は利用料金20%アップ<br>
+    ＊時間延長は30分単位<br>
+    ＊15分前からの入室が可能。それより前の入室は30分の料金が加算されます。
+  </p>
+
+  <div class="section-title">キャンセルについて</div>
+  <p class="price-note">
+    決定後のキャンセル(日時変更含む)は規定のキャンセル料が発生します。<br>
+    当日・前日・2日前 100%　／　3日前 80%　／　4日前 70%　／　5日前 60%　／　6日前 50%　／　7日前以上 40%
+  </p>
+
+  <div class="section-title">お支払いについて</div>
+  <p class="price-note">
+    スタジオご利用月の月末締め、翌月末払いにて請求書を発行します。お振り込みにてお支払いください。<br>
+    ＊カードのご利用はできません。＊初回のお取引は現金、または事前のお振り込みになります。
+  </p>
+
+  <div class="section-title">Guide(ご利用前に必ずお読みください)</div>
+  <p class="price-note">注意事項につきましては、撮影スタッフのみなさまにも必ずお伝えください。</p>
+
+  <div class="section-title" style="margin-top:6vh; font-size:1rem;">〈利用規約〉</div>
+  <div class="guide-list">
+    <p>ご予約時の利用内容と実際の内容が異なる場合は、ご利用を中止していただく場合があります。</p>
+    <p>お客様が利用規約に違反し、当スタジオ判断でやむを得ず撮影を中止させていただいた場合にも規定通りキャンセル料が発生します。</p>
+    <p>出入り、搬出入時は近隣、居住者のご迷惑とならないようお静かにお願いします。</p>
+    <p>スタジオの向かい側に保育園がございます。お車の方はくれぐれもお気をつけください。</p>
+    <p>ベランダ、共有部での大きな声での会話は、近隣、居住者のご迷惑になりますのでお控えください。</p>
+    <p>敷地内への駐車は搬入搬出時のみ一台に限り可能です。撮影中の駐車はできません。近隣のコインパーキングをご利用ください。</p>
+    <p>当スタジオにはエレベーターはありません。</p>
+    <p>お持ち込みで出たゴミはお持ち帰りをお願いしております。</p>
+    <p>スタッフは現地に常駐していませんので、事前搬入・宅配便などは事前にご連絡ください。</p>
+    <p>ご予約時間内に現状復帰、退出を完了してください。退出されない場合は、予告なしに延長料金が発生します。</p>
+    <p>延長受付は可能な場合のみ、30分単位で承ります。延長の可能性が高い場合は事前にお申し出ください。</p>
+    <p>ロケハン時・HP写真と内装・家具・小物等が異なる場合は現状優先といたします。</p>
+    <p>家具・小物の移動は床を引きづらず持ち上げてのご移動をお願いします。</p>
+    <p>床・壁を傷つける恐れがある機材搬入出、靴や機材を用いた撮影の際には十分なご配慮をお願いします。</p>
+    <p>壁・床・家具・小物等に破損や損傷があった場合は補修・交換、または弁償の費用を請求します。</p>
+    <p>キッチンでの撮影をご希望の場合は事前にお知らせください。</p>
+    <p>スタジオ内(共有部含む)での火災・事故・怪我や、お客様のお持ち込みした機材の盗難・損傷、トラブルが発生した場合、当スタジオは一切の責任を負いません。</p>
+    <p>撮影前の事前配送がある場合は必ずご相談ください。また撮影後、荷物の出荷がある場合は、出荷完了までがご利用時間となりますのでご注意ください。配送業者はご自身での手配をお願いします。</p>
+    <p>当スタジオはマンション物件のため大人数、機材の規模によっては撮影をお断りすることがあります。</p>
+  </div>
+
+  <div class="section-title" style="margin-top:8vh; font-size:1rem;">〈禁止事項〉</div>
+  <div class="guide-list">
+    <p>火気・水・煙幕及び危険物の使用はできません。</p>
+    <p>アダルトビデオ等の撮影はお断りします。</p>
+    <p>日没後、バルコニーでのストロボの使用は禁止です。</p>
+    <p>建物外観、1階〜3階での撮影は禁止です。</p>
+    <p>建物内(ベランダ含む)、建物前は禁煙です(電子タバコ含む)。</p>
+    <p>スタジオの壁・床・窓・ドア等へのテープ、釘、ネジ等の使用はできません。壁・床・家具・小物等に破損や損傷があった場合は補修・交換、または弁償の費用を請求いたします。</p>
+    <p>ペットなど動物の持ち込みは禁止です。</p>
+    <p>大人数の撮影はお断りしています。</p>
+  </div>
+
+  <div class="section-title">Space</div>
+  <div class="space-grid">
+    <div><strong>73m²</strong>室内</div>
+    <div><strong>7m²</strong>バルコニー</div>
+    <div><strong>南向き</strong>主採光</div>
+    <div><strong>100V / 60A</strong>電源</div>
+  </div>
+  <p class="price-note">エレベーター、オートロックなし</p>
+
+  <div class="floorplan-wrap">
+    <img src="images/floorplan.jpg" alt="tarme 平面図">
+  </div>
+
+</main>
+
+<footer>
+  <span class="name">tarme</span>
+  <span class="meta">
+    〈スタジオ予約〉 070-3352-8880<br>
+    〈e-mail〉 <a href="mailto:planted.llc.088@gmail.com">planted.llc.088@gmail.com</a><br>
+    〒152-0035 東京都目黒区自由が丘1-3-27 自由が丘ファミリアハイツ402
+  </span>
+</footer>
+
+</body>
+</html>

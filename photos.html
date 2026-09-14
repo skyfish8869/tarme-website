@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photos | tarme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F6F1E7; --fg: #2A2420; --fg-dim: #8A7F6E;
+    --line: #DDD2BE; --accent: #A6845C; --accent-soft: #C9A876;
+  }
+  *{ box-sizing: border-box; }
+  body{ margin:0; background: var(--bg); color: var(--fg); font-family:'Zen Kaku Gothic New',sans-serif; font-weight:300; }
+  h1,h2,h3,p{ text-wrap: pretty; word-break: keep-all; overflow-wrap: break-word; }
+  header{
+    position: fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content: space-between; align-items:center;
+    padding: 20px 6vw; background: rgba(246,241,231,0.88);
+    backdrop-filter: blur(6px); border-bottom: 1px solid var(--line);
+  }
+  .logo img{ height:34px; display:block; }
+  nav{ display:flex; gap:32px; }
+  nav a{ color: var(--fg); text-decoration:none; font-size:0.78rem; letter-spacing:0.12em; opacity:.7; }
+  nav a.current, nav a:hover{ opacity:1; color: var(--accent); }
+
+  .page-head{ padding: 22vh 6vw 6vh; }
+  .page-head .eyebrow{ font-size:0.72rem; letter-spacing:0.2em; color: var(--fg-dim); text-transform: uppercase; }
+  .page-head h1{ font-family:'Zen Old Mincho',serif; font-weight:500; font-size: clamp(2rem,5vw,3rem); margin:10px 0 0; }
+
+  .gallery{ padding: 4vh 6vw 0; display:flex; flex-direction:column; gap:10vh; align-items:center; }
+  .frame{ display:flex; flex-direction:column; align-items:center; gap:14px; width:100%; max-width:920px; }
+  .frame img{ display:block; width:auto; height:auto; max-width:100%; max-height:80vh; }
+  .frame-meta{ display:flex; justify-content:space-between; width:100%; font-size:0.72rem; letter-spacing:0.1em; color: var(--fg-dim); }
+
+  .room-divider{
+    display:flex; align-items:center; gap:20px;
+    margin: 2vh 0;
+  }
+  .room-divider .rule{ flex:1; height:1px; background: var(--line); }
+  .room-divider span{
+    font-family:'Zen Old Mincho',serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .placeholder-note{
+    margin: 4vh 6vw 0;
+    padding: 24px 28px;
+    border: 1px dashed var(--line);
+    font-size: 0.8rem;
+    line-height: 1.9;
+    color: var(--fg-dim);
+    max-width: 640px;
+  }
+
+  @media (max-width: 720px){
+    header{ padding:16px 6vw; } nav{ gap:18px; }
+    .frame img{ max-height:70vh; }
+  }
+
+  footer{
+    margin-top: 20vh; padding: 60px 6vw 44px; border-top: 1px solid var(--line);
+    display:flex; justify-content: space-between; flex-wrap:wrap; gap:24px;
+  }
+  footer .name{ font-family:'Zen Old Mincho',serif; font-size:1.1rem; }
+  footer .meta{ font-size:0.78rem; line-height:2; color: var(--fg-dim); }
+  footer a{ color: var(--fg-dim); text-decoration:none; }
+  footer a:hover{ color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/index.html"><img src="https://static.wixstatic.com/media/a74546_08fc45654d7343808443d3024b52e99a~mv2.jpg/v1/fill/w_323,h_123,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5047.jpg" alt="tarme"></a>
+  <nav>
+    <a href="/index.html">Home</a>
+    <a class="current" href="/photos.html">Photos</a>
+    <a href="/price.html">Price&amp;Guide</a>
+    <a href="/access.html">Access</a>
+  </nav>
+</header>
+
+<div class="page-head">
+  <span class="eyebrow">Interior Photos</span>
+  <h1>Photos</h1>
+</div>
+
+<section class="gallery">
+  <div class="frame"><img loading="lazy" src="images/gray_room_1.jpg" alt="tarme グレールーム"><div class="frame-meta"><span>01</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/gray_room_2.jpg" alt="tarme グレールーム"><div class="frame-meta"><span>02</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/pink_room_1.jpg" alt="tarme ピンクルーム"><div class="frame-meta"><span>03</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/pink_room_2.jpg" alt="tarme ピンクルーム"><div class="frame-meta"><span>04</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/pink_room_4.jpg" alt="tarme ピンクルーム"><div class="frame-meta"><span>05</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/pink_room_3.jpg" alt="tarme ピンクルーム"><div class="frame-meta"><span>06</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/wood_wall_bed.jpg" alt="tarme ウッドウォール ベッドスタイリング"><div class="frame-meta"><span>07</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/wood_wall_blue_2.jpg" alt="tarme ウッドウォール ブルーの部屋"><div class="frame-meta"><span>08</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/kitchen_1.jpg" alt="tarme キッチン"><div class="frame-meta"><span>09</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/kitchen_2.jpg" alt="tarme キッチン"><div class="frame-meta"><span>10</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/kitchen_3.jpg" alt="tarme キッチン 小物"><div class="frame-meta"><span>11</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/living_light.jpg" alt="tarme 自然光と床"><div class="frame-meta"><span>12</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/window.jpg" alt="tarme リビング 窓辺"><div class="frame-meta"><span>13</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/white_sofa.jpg" alt="tarme リビング"><div class="frame-meta"><span>14</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/entrance.jpg" alt="tarme エントランス"><div class="frame-meta"><span>15</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/balcony.jpg" alt="tarme バルコニー"><div class="frame-meta"><span>16</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/bathroom.jpg" alt="tarme 洗面"><div class="frame-meta"><span>17</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/entrance_door.jpg" alt="tarme 玄関ドア"><div class="frame-meta"><span>18</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/wall_gray.jpg" alt="tarme グレールーム 壁面"><div class="frame-meta"><span>19</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/wood_wall_blue_1.jpg" alt="tarme ウッドウォール ブルーの部屋"><div class="frame-meta"><span>20</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/wall_white.jpg" alt="tarme リビング 白壁"><div class="frame-meta"><span>21</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/wall_pink.jpg" alt="tarme ピンクルーム 壁面"><div class="frame-meta"><span>22</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/pink_room_side_2.jpg" alt="tarme ピンクルーム"><div class="frame-meta"><span>23</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/pink_room_side_1.jpg" alt="tarme ピンクルーム"><div class="frame-meta"><span>24</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/make.jpg" alt="tarme 支度スペース"><div class="frame-meta"><span>25</span><span>tarme</span></div></div>
+  <div class="frame"><img loading="lazy" src="images/props.jpg" alt="tarme 小物"><div class="frame-meta"><span>26</span><span>tarme</span></div></div>
+</section>
+
+<footer>
+  <span class="name">tarme</span>
+  <span class="meta">
+    〈スタジオ予約〉 070-3352-8880<br>
+    〈e-mail〉 <a href="mailto:planted.llc.088@gmail.com">planted.llc.088@gmail.com</a><br>
+    〒152-0035 東京都目黒区自由が丘1-3-27 自由が丘ファミリアハイツ402
+  </span>
+</footer>
+
+</body>
+</html>

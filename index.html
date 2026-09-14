@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tarme | レンタル撮影スタジオ 自由が丘</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F6F1E7;
+    --bg-raise: #EFE7D8;
+    --fg: #2A2420;
+    --fg-dim: #8A7F6E;
+    --line: #DDD2BE;
+    --accent: #A6845C;
+    --accent-soft: #C9A876;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- 光の帯(サイン要素): セクション区切りに使う柔らかいグラデーション ---- */
+  .light-band{
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-soft) 35%, #fff 50%, var(--accent-soft) 65%, transparent);
+    opacity: .55;
+    margin: 0 6vw;
+  }
+
+  header{
+    position: fixed;
+    top:0; left:0; right:0;
+    z-index: 50;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 6vw;
+    background: rgba(246,241,231,0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo img{ height: 34px; display:block; }
+  nav{ display:flex; gap: 32px; }
+  nav a{
+    color: var(--fg);
+    text-decoration:none;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    opacity: 0.7;
+    transition: opacity .3s ease;
+  }
+  nav a.current, nav a:hover, nav a:focus-visible{ opacity: 1; color: var(--accent); }
+
+  /* ---- Hero ---- */
+  .hero{
+    height: 100svh;
+    position: relative;
+    display:flex;
+    overflow:hidden;
+  }
+  .hero-split{
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+  }
+  .hero-split img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    filter: saturate(1.03) brightness(1.02);
+  }
+  .hero-split::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: linear-gradient(180deg, rgba(42,36,32,0.02) 0%, rgba(42,36,32,0.42) 100%);
+  }
+  .hero-split .room-label{
+    position: absolute;
+    left: 6vw; bottom: 28px;
+    z-index: 2;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.9);
+    text-transform: uppercase;
+  }
+  .hero-caption{
+    position: absolute;
+    left:0; right:0; top: 100px;
+    z-index: 3;
+    padding: 0 6vw;
+    text-align: center;
+    pointer-events:none;
+  }
+  .hero-eyebrow{
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.9);
+    text-transform: uppercase;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+  }
+  .hero-title{
+    font-family: 'Zen Old Mincho', serif;
+    font-size: clamp(1.6rem, 4.2vw, 2.6rem);
+    color: #fff;
+    margin: 14px 0 0;
+    line-height: 1.6;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+  }
+
+  @media (max-width: 720px){
+    .hero{ flex-direction: column; height: 92svh; }
+    .hero-split img{ object-position: center 30%; }
+    .hero-caption{ top: 88px; }
+    .hero-title{ font-size: 1.3rem; }
+    .hero-eyebrow{ font-size: 0.66rem; }
+  }
+
+  /* ---- Intro ---- */
+  .intro{
+    padding: 14vh 6vw;
+    max-width: 760px;
+  }
+  .intro .eyebrow{
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .intro h2{
+    font-family: 'Zen Old Mincho', serif;
+    font-weight: 500;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.9;
+    margin: 20px 0 0;
+    max-width: 22em;
+    text-wrap: balance;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* ---- Feature strip (代表的な特徴を3つ) ---- */
+  .features{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    margin: 8vh 6vw 0;
+    border: 1px solid var(--line);
+  }
+  .feature{
+    background: var(--bg);
+    padding: 40px 28px;
+  }
+  .feature .num{
+    font-family: 'Zen Old Mincho', serif;
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+  .feature h3{
+    font-family: 'Zen Old Mincho', serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    margin: 14px 0 10px;
+  }
+  .feature p{
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--fg-dim);
+    margin:0;
+  }
+
+  /* ---- Gallery preview: ジグザグ配置(写真家サイトと共通の型) ---- */
+  .gallery{
+    padding: 14vh 6vw 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12vh;
+  }
+  .frame{ display:flex; flex-direction: column; gap: 12px; }
+  .frame.wide{ align-items:center; }
+  .frame.wide img{ max-width: 78%; }
+  .frame.left img{ margin-right:auto; }
+  .frame.right img{ margin-left:auto; }
+  .frame img{
+    display:block;
+    width: 60%;
+    max-width: 680px;
+    height:auto;
+  }
+  .frame-meta{
+    display:flex;
+    justify-content: space-between;
+    width: 60%;
+    max-width: 680px;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--fg-dim);
+  }
+  .frame.wide .frame-meta{ width: 78%; }
+
+  .gallery-cta{
+    padding: 8vh 6vw 0;
+  }
+  .gallery-cta a{
+    display:inline-block;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    color: var(--fg);
+    text-decoration:none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 6px;
+  }
+
+  @media (max-width: 720px){
+    .frame img, .frame-meta, .frame.wide img, .frame.wide .frame-meta{ width:100%; max-width:none; }
+    .features{ grid-template-columns: 1fr; }
+    header{ padding: 16px 6vw; }
+    nav{ gap: 18px; }
+  }
+
+  footer{
+    margin-top: 20vh;
+    padding: 60px 6vw 44px;
+    border-top: 1px solid var(--line);
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  footer .name{
+    font-family: 'Zen Old Mincho', serif;
+    font-size: 1.1rem;
+  }
+  footer .meta{
+    font-size: 0.78rem;
+    line-height: 2;
+    color: var(--fg-dim);
+  }
+  footer a{ color: var(--fg-dim); text-decoration:none; border-bottom: 1px solid transparent; }
+  footer a:hover{ color: var(--accent); border-color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/index.html"><img src="https://static.wixstatic.com/media/a74546_08fc45654d7343808443d3024b52e99a~mv2.jpg/v1/fill/w_323,h_123,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5047.jpg" alt="tarme"></a>
+  <nav>
+    <a class="current" href="/index.html">Home</a>
+    <a href="/photos.html">Photos</a>
+    <a href="/price.html">Price&amp;Guide</a>
+    <a href="/access.html">Access</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-split">
+    <img src="images/gray-room-3.jpg" alt="tarme グレールーム">
+    <span class="room-label">Gray Room</span>
+  </div>
+  <div class="hero-split">
+    <img src="images/pink-room-4.jpg" alt="tarme ピンクルーム">
+    <span class="room-label">Pink Room</span>
+  </div>
+  <div class="hero-caption">
+    <span class="hero-eyebrow">自由が丘 — House Studio / Renewal</span>
+    <h2 class="hero-title">新しい色が、暮らしの部屋に加わりました。</h2>
+  </div>
+</section>
+
+<div class="intro">
+  <span class="eyebrow">About tarme</span>
+  <h2>自由が丘駅から徒歩8分。<wbr>暮らしが撮れる空間に<wbr>カラフルな要素が備わった<wbr>1日中明るいハウススタジオ。</h2>
+</div>
+
+<div class="features">
+  <div class="feature">
+    <span class="num">01</span>
+    <h3>自然光</h3>
+    <p>南向きの大きな窓から、朝から夕方まで柔らかな光が差し込みます。</p>
+  </div>
+  <div class="feature">
+    <span class="num">02</span>
+    <h3>カラフルな要素</h3>
+    <p>ピンクの壁と絨毯の一室、印象的な木壁前にはブルーの絨毯、淡いグレーのニッチ壁。<br>暮らしの部屋に、色の表情が加わりました。</p>
+  </div>
+  <div class="feature">
+    <span class="num">03</span>
+    <h3>キッチン</h3>
+    <p>実際に使えるキッチンがあり、料理・生活シーンの撮影にも対応します。</p>
+  </div>
+</div>
+
+<div class="light-band" style="margin-top: 14vh;"></div>
+
+<section class="gallery" id="photos">
+  <!-- リフォーム後、新しい室内写真に差し替え予定(アウトライン段階) -->
+  <div class="frame left">
+    <img loading="lazy" src="https://static.wixstatic.com/media/a74546_e1c55e83022745e4bca2b05de40b1bfd~mv2.jpg/v1/fill/w_600,h_417,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/a74546_e1c55e83022745e4bca2b05de40b1bfd~mv2.jpg" alt="tarme studio interior">
+    <div class="frame-meta"><span>Living</span><span>tarme</span></div>
+  </div>
+</section>
+
+<div class="gallery-cta">
+  <a href="/photos.html">スタジオ写真をもっと見る →</a>
+</div>
+
+<footer>
+  <span class="name">tarme</span>
+  <span class="meta">
+    〈スタジオ予約〉 070-3352-8880<br>
+    〈e-mail〉 <a href="mailto:planted.llc.088@gmail.com">planted.llc.088@gmail.com</a><br>
+    〒152-0035 東京都目黒区自由が丘1-3-27 自由が丘ファミリアハイツ402
+  </span>
+</footer>
+
+</body>
+</html>

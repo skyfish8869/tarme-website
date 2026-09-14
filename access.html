@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Access | tarme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F6F1E7; --fg: #2A2420; --fg-dim: #8A7F6E;
+    --line: #DDD2BE; --accent: #A6845C;
+  }
+  *{ box-sizing: border-box; }
+  body{ margin:0; background: var(--bg); color: var(--fg); font-family:'Zen Kaku Gothic New',sans-serif; font-weight:300; min-height:100svh; display:flex; flex-direction:column; }
+  h1,h2,h3,p,div{ text-wrap: pretty; word-break: keep-all; overflow-wrap: break-word; }
+  header{
+    position: fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content: space-between; align-items:center;
+    padding: 20px 6vw; background: rgba(246,241,231,0.88);
+    backdrop-filter: blur(6px); border-bottom: 1px solid var(--line);
+  }
+  .logo img{ height:34px; display:block; }
+  nav{ display:flex; gap:32px; }
+  nav a{ color: var(--fg); text-decoration:none; font-size:0.78rem; letter-spacing:0.12em; opacity:.7; }
+  nav a.current, nav a:hover{ opacity:1; color: var(--accent); }
+
+  .page-head{ padding: 22vh 6vw 6vh; }
+  .page-head .eyebrow{ font-size:0.72rem; letter-spacing:0.2em; color: var(--fg-dim); text-transform: uppercase; }
+  .page-head h1{ font-family:'Zen Old Mincho',serif; font-weight:500; font-size: clamp(2rem,5vw,3rem); margin:10px 0 0; }
+
+  main{ flex:1; padding: 0 6vw; display:flex; flex-direction:column; gap: 6vh; max-width: 760px; }
+
+  .info-row{
+    display:flex; gap: 28px; padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  .info-row .label{
+    width: 120px; flex-shrink:0;
+    font-family:'Zen Old Mincho',serif; font-size: 0.95rem; color: var(--accent);
+  }
+  .info-row .value{ font-size: 0.9rem; line-height: 1.9; color: var(--fg); }
+  .info-row a{ color: var(--fg); }
+
+  .map-embed{
+    width:100%; aspect-ratio: 16/9;
+    border: 1px solid var(--line);
+    background: var(--bg-raise, #EFE7D8);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 0.78rem; color: var(--fg-dim);
+  }
+
+  @media (max-width: 720px){
+    header{ padding:16px 6vw; } nav{ gap:18px; }
+    .info-row{ flex-direction:column; gap:6px; }
+  }
+
+  footer{
+    margin-top: 12vh; padding: 60px 6vw 44px; border-top: 1px solid var(--line);
+    display:flex; justify-content: space-between; flex-wrap:wrap; gap:24px;
+  }
+  footer .name{ font-family:'Zen Old Mincho',serif; font-size:1.1rem; }
+  footer .meta{ font-size:0.78rem; line-height:2; color: var(--fg-dim); }
+  footer a{ color: var(--fg-dim); text-decoration:none; }
+  footer a:hover{ color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/index.html"><img src="https://static.wixstatic.com/media/a74546_08fc45654d7343808443d3024b52e99a~mv2.jpg/v1/fill/w_323,h_123,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_5047.jpg" alt="tarme"></a>
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/photos.html">Photos</a>
+    <a href="/price.html">Price&amp;Guide</a>
+    <a class="current" href="/access.html">Access</a>
+  </nav>
+</header>
+
+<div class="page-head">
+  <span class="eyebrow">アクセス・お問い合わせ</span>
+  <h1>Access</h1>
+</div>
+
+<main>
+  <div class="map-embed">
+    <iframe
+      src="https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E7%9B%AE%E9%BB%92%E5%8C%BA%E8%87%AA%E7%94%B1%E3%81%8C%E4%B8%981-3-27&output=embed"
+      width="100%" height="100%" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+
+  <div>
+    <div class="info-row">
+      <span class="label">住所</span>
+      <span class="value">〒152-0035<br>東京都目黒区自由が丘1-3-27<br>自由が丘ファミリアハイツ402</span>
+    </div>
+    <div class="info-row">
+      <span class="label">アクセス</span>
+      <span class="value">自由が丘駅より徒歩8分</span>
+    </div>
+    <div class="info-row">
+      <span class="label">スタジオ予約</span>
+      <span class="value"><a href="tel:07033528880">070-3352-8880</a></span>
+    </div>
+    <div class="info-row">
+      <span class="label">e-mail</span>
+      <span class="value"><a href="mailto:planted.llc.088@gmail.com">planted.llc.088@gmail.com</a></span>
+    </div>
+    <div class="info-row">
+      <span class="label">Instagram</span>
+      <span class="value"><a href="https://instagram.com/tarme402" target="_blank" rel="noopener">@tarme402</a></span>
+    </div>
+    <div class="info-row">
+      <span class="label">management</span>
+      <span class="value">KOMAZAWA LOCATIONS</span>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span class="name">tarme</span>
+  <span class="meta">
+    〈スタジオ予約〉 070-3352-8880<br>
+    〈e-mail〉 <a href="mailto:planted.llc.088@gmail.com">planted.llc.088@gmail.com</a><br>
+    〒152-0035 東京都目黒区自由が丘1-3-27 自由が丘ファミリアハイツ402
+  </span>
+</footer>
+
+</body>
+</html>
