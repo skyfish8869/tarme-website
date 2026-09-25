@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>申し込み確認書 ― tarme</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-light: #555550;
+    --rule: #d0cec8;
+    --bg: #f9f8f5;
+    --bg-section: #ffffff;
+    --accent: #b8a99a;
+    --focus: #7a6e63;
+    --radius: 2px;
+  }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 40px 20px 80px;
+  }
+
+  .page { max-width: 720px; margin: 0 auto; }
+
+  /* ヘッダー */
+  .header { text-align: center; padding-bottom: 32px; border-bottom: 1px solid var(--rule); margin-bottom: 36px; }
+  .header-logo { font-size: 11px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 8px; text-transform: uppercase; }
+  .header h1 { font-size: 22px; font-weight: 300; letter-spacing: 0.15em; color: var(--ink); }
+  .header-sub { font-size: 11px; color: var(--ink-light); margin-top: 6px; letter-spacing: 0.05em; }
+
+  /* セクション */
+  .section { background: var(--bg-section); border: 1px solid var(--rule); margin-bottom: 16px; }
+  .section-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--rule);
+    background: #faf9f7;
+  }
+  .section-body { padding: 20px; }
+
+  /* フィールドグリッド */
+  .fields { display: grid; gap: 16px; }
+  .fields-2 { grid-template-columns: 1fr 1fr; }
+  .fields-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .field label {
+    display: block;
+    font-size: 11px;
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink);
+    background: #fff;
+    border: none;
+    border-bottom: 1px solid var(--rule);
+    border-radius: 0;
+    padding: 6px 2px;
+    outline: none;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-bottom-color: var(--focus);
+  }
+  .field textarea { resize: vertical; min-height: 72px; }
+
+  /* 日時行 */
+  .datetime-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 12px;
+    align-items: end;
+  }
+  .datetime-label {
+    font-size: 11px;
+    color: var(--ink-light);
+    letter-spacing: 0.08em;
+    padding-bottom: 4px;
+  }
+
+  /* チェックボックス・ラジオ */
+  .check-group, .radio-group { display: flex; flex-wrap: wrap; gap: 16px; padding-top: 4px; }
+  .check-group label, .radio-group label {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: var(--ink); cursor: pointer;
+  }
+  .check-group input[type="checkbox"],
+  .radio-group input[type="radio"] {
+    width: 14px; height: 14px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    accent-color: var(--focus);
+    cursor: pointer;
+  }
+
+  /* 同意チェック */
+  .agree-row {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 16px 20px;
+    border-top: 1px solid var(--rule);
+    background: #faf9f7;
+  }
+  .agree-row input { margin-top: 2px; width: 16px; height: 16px; accent-color: var(--focus); cursor: pointer; flex-shrink: 0; }
+  .agree-row span { font-size: 12px; color: var(--ink-light); line-height: 1.6; }
+  .agree-row a { color: var(--focus); }
+
+  /* 送信先案内 */
+  .send-info {
+    background: #fff;
+    border: 1px solid var(--rule);
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: var(--ink-light);
+    line-height: 1.8;
+  }
+  .send-info strong { color: var(--ink); font-weight: 500; }
+
+  /* 送信ボタン */
+  .submit-wrap { text-align: center; margin-top: 28px; }
+  .btn-submit {
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    padding: 14px 60px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-submit:hover { background: var(--focus); }
+  .btn-submit:disabled { background: var(--rule); cursor: not-allowed; }
+
+  /* 送信完了 */
+  .sent-msg {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 15px;
+    color: var(--ink-light);
+    letter-spacing: 0.05em;
+  }
+
+  /* 返信先 */
+  .reply-info { font-size: 11px; color: var(--ink-light); margin-top: 10px; }
+
+  @media (max-width: 560px) {
+    .fields-2, .fields-3 { grid-template-columns: 1fr; }
+    .datetime-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-logo">House Studio · 自由が丘</div>
+    <h1>申し込み確認書</h1>
+    <div class="header-sub">《 tarme 》</div>
+  </div>
+
+  <div class="send-info">
+    <strong>ご返信先</strong><br>
+    MAIL：planted.llc.088@gmail.com<br>
+    FAX：03-3412-8199
+  </div>
+
+  <form id="moushikomi" onsubmit="handleSubmit(event)" novalidate>
+
+    <!-- 利用規約同意 -->
+    <div class="section">
+      <div class="agree-row">
+        <input type="checkbox" id="agree" name="agree" required>
+        <span>
+          <label for="agree">
+            ☑ <strong>利用規約に従います</strong>（必ずチェックをお願いします）
+          </label>
+        </span>
+      </div>
+    </div>
+
+    <!-- お申し込み -->
+    <div class="section">
+      <div class="section-title">お申し込み</div>
+      <div class="section-body">
+        <div class="fields" style="gap:20px;">
+
+          <!-- 開始日時 -->
+          <div>
+            <div class="datetime-label">開始日時　※搬入搬出・原状復帰も含めたお時間でご記入ください</div>
+            <div class="datetime-row">
+              <div class="field">
+                <label>日付</label>
+                <input type="date" name="start_date" required>
+              </div>
+              <div class="field">
+                <label>曜日</label>
+                <input type="text" name="start_day" placeholder="月" maxlength="1">
+              </div>
+              <div class="field">
+                <label>時</label>
+                <input type="number" name="start_hour" min="0" max="23" placeholder="9">
+              </div>
+              <div class="field">
+                <label>分</label>
+                <input type="number" name="start_min" min="0" max="59" step="15" placeholder="00">
+              </div>
+            </div>
+          </div>
+
+          <!-- 終了日時 -->
+          <div>
+            <div class="datetime-label">終了日時</div>
+            <div class="datetime-row">
+              <div class="field">
+                <label>日付</label>
+                <input type="date" name="end_date">
+              </div>
+              <div class="field">
+                <label>曜日</label>
+                <input type="text" name="end_day" placeholder="月" maxlength="1">
+              </div>
+              <div class="field">
+                <label>時</label>
+                <input type="number" name="end_hour" min="0" max="23" placeholder="15">
+              </div>
+              <div class="field">
+                <label>分</label>
+                <input type="number" name="end_min" min="0" max="59" step="15" placeholder="00">
+              </div>
+            </div>
+          </div>
+
+          <!-- 申込者情報 -->
+          <div class="fields fields-2">
+            <div class="field">
+              <label>貴殿（貴社）名</label>
+              <input type="text" name="company" placeholder="株式会社〇〇" required>
+            </div>
+            <div class="field">
+              <label>部署名</label>
+              <input type="text" name="department" placeholder="〇〇編集部">
+            </div>
+          </div>
+
+          <div class="fields fields-2">
+            <div class="field">
+              <label>ご担当者名（署名）</label>
+              <input type="text" name="contact_name" placeholder="山田 花子" required>
+            </div>
+            <div class="field">
+              <label>ご住所</label>
+              <input type="text" name="address" placeholder="〒000-0000 東京都…">
+            </div>
+          </div>
+
+          <div class="fields fields-3">
+            <div class="field">
+              <label>TEL</label>
+              <input type="tel" name="tel" placeholder="03-0000-0000">
+            </div>
+            <div class="field">
+              <label>FAX</label>
+              <input type="tel" name="fax" placeholder="03-0000-0000">
+            </div>
+            <div class="field">
+              <label>携帯</label>
+              <input type="tel" name="mobile" placeholder="090-0000-0000">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ご利用目的 -->
+    <div class="section">
+      <div class="section-title">ご利用目的</div>
+      <div class="section-body">
+        <div class="fields" style="gap:20px;">
+
+          <div class="field">
+            <label>ご利用の目的</label>
+            <div class="check-group" style="margin-bottom:10px;">
+              <label><input type="checkbox" name="purpose_still"> スチール撮影</label>
+              <label><input type="checkbox" name="purpose_vtr"> VTR撮影</label>
+              <label><input type="checkbox" name="purpose_other"> その他</label>
+            </div>
+            <input type="text" name="purpose_detail" placeholder="内容・詳細（例：〇〇10月号撮影）">
+          </div>
+
+          <div class="fields fields-2">
+            <div class="field">
+              <label>掲載誌名・番組名</label>
+              <input type="text" name="media" placeholder="〇〇10月号">
+            </div>
+            <div class="field">
+              <label>発売日・放送日</label>
+              <input type="text" name="release_date" placeholder="例：12月25日発売">
+            </div>
+          </div>
+
+          <div class="fields fields-2">
+            <div class="field">
+              <label>代理店</label>
+              <input type="text" name="agency" placeholder="">
+            </div>
+            <div class="field">
+              <label>クライアント</label>
+              <input type="text" name="client" placeholder="">
+            </div>
+          </div>
+
+          <div class="field" style="max-width:120px;">
+            <label>当日人数</label>
+            <input type="number" name="headcount" min="1" placeholder="12">
+          </div>
+
+          <div class="fields fields-2">
+            <div class="field">
+              <label>カメラマン</label>
+              <input type="text" name="photographer" placeholder="氏名">
+            </div>
+            <div class="field">
+              <label>カメラマン住所</label>
+              <input type="text" name="photographer_address" placeholder="ご住所">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>その他ご要望</label>
+            <textarea name="remarks" placeholder="ご自由にお書きください"></textarea>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- お支払い -->
+    <div class="section">
+      <div class="section-title">お支払い</div>
+      <div class="section-body">
+        <div class="fields" style="gap:20px;">
+
+          <div class="fields fields-2">
+            <div class="field">
+              <label>支払方法</label>
+              <div class="radio-group">
+                <label><input type="radio" name="payment" value="現金"> 現金</label>
+                <label><input type="radio" name="payment" value="銀行振込" checked> 銀行振込</label>
+              </div>
+            </div>
+            <div class="field">
+              <label>振込予定日</label>
+              <input type="date" name="payment_date">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>請求書発行</label>
+            <div class="radio-group">
+              <label><input type="radio" name="invoice" value="必要" checked> 必要</label>
+              <label><input type="radio" name="invoice" value="不要"> 不要</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>ご請求先</label>
+            <div class="radio-group" style="margin-bottom:10px;">
+              <label><input type="radio" name="billing_same" value="same" checked onchange="toggleBilling(this)"> 申込者と同じ</label>
+              <label><input type="radio" name="billing_same" value="other" onchange="toggleBilling(this)"> その他</label>
+            </div>
+          </div>
+
+          <div id="billing-detail" style="display:none;">
+            <div class="fields" style="gap:16px;">
+              <div class="fields fields-2">
+                <div class="field">
+                  <label>社名</label>
+                  <input type="text" name="billing_company">
+                </div>
+                <div class="field">
+                  <label>部署/ご担当者名</label>
+                  <input type="text" name="billing_contact">
+                </div>
+              </div>
+              <div class="field">
+                <label>ご住所</label>
+                <input type="text" name="billing_address">
+              </div>
+              <div class="fields fields-3">
+                <div class="field">
+                  <label>TEL</label>
+                  <input type="tel" name="billing_tel">
+                </div>
+                <div class="field">
+                  <label>FAX</label>
+                  <input type="tel" name="billing_fax">
+                </div>
+                <div class="field">
+                  <label>携帯</label>
+                  <input type="tel" name="billing_mobile">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 送信ボタン -->
+    <div class="submit-wrap">
+      <button type="submit" class="btn-submit" id="submitBtn">この内容で送信する</button>
+      <div class="reply-info">送信後、planted.llc.088@gmail.com へ申込内容が届きます</div>
+    </div>
+
+  </form>
+
+  <div class="sent-msg" id="sentMsg">
+    ✓ 送信が完了しました。<br>
+    <span style="font-size:12px;">確認後、tarmeよりご連絡いたします。</span>
+  </div>
+
+</div>
+
+<script>
+  // 曜日自動入力
+  const DAYS = ['日','月','火','水','木','金','土'];
+  document.querySelectorAll('input[type="date"]').forEach(el => {
+    el.addEventListener('change', function() {
+      if (!this.value) return;
+      const d = new Date(this.value);
+      const dayField = this.name === 'start_date'
+        ? document.querySelector('[name="start_day"]')
+        : this.name === 'end_date'
+          ? document.querySelector('[name="end_day"]') : null;
+      if (dayField) dayField.value = DAYS[d.getDay()];
+    });
+  });
+
+  function toggleBilling(el) {
+    document.getElementById('billing-detail').style.display =
+      el.value === 'other' ? 'block' : 'none';
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const agree = document.getElementById('agree');
+    if (!agree.checked) {
+      alert('利用規約への同意チェックをお願いします。');
+      return;
+    }
+    const fd = new FormData(e.target);
+    const lines = [];
+    const labels = {
+      start_date:'開始日', start_day:'曜日', start_hour:'開始時', start_min:'開始分',
+      end_date:'終了日', end_day:'曜日', end_hour:'終了時', end_min:'終了分',
+      company:'貴社名', department:'部署名', contact_name:'担当者名', address:'住所',
+      tel:'TEL', fax:'FAX', mobile:'携帯',
+      purpose_detail:'利用内容', media:'掲載誌名', release_date:'発売日',
+      agency:'代理店', client:'クライアント', headcount:'当日人数',
+      photographer:'カメラマン', photographer_address:'カメラマン住所',
+      remarks:'その他ご要望',
+      payment:'支払方法', payment_date:'振込予定日', invoice:'請求書発行',
+      billing_company:'請求先社名', billing_contact:'請求先担当者',
+      billing_address:'請求先住所', billing_tel:'請求先TEL',
+    };
+    // チェックボックス
+    const purposes = [];
+    if (fd.get('purpose_still')) purposes.push('スチール撮影');
+    if (fd.get('purpose_vtr')) purposes.push('VTR撮影');
+    if (fd.get('purpose_other')) purposes.push('その他');
+    if (purposes.length) lines.push('ご利用目的: ' + purposes.join('・'));
+
+    for (const [k, v] of fd.entries()) {
+      if (['agree','purpose_still','purpose_vtr','purpose_other','billing_same'].includes(k)) continue;
+      const label = labels[k] || k;
+      if (v && v.trim()) lines.push(`${label}: ${v}`);
+    }
+
+    const body = encodeURIComponent(lines.join('\n'));
+    const subject = encodeURIComponent('【tarme申し込み確認書】' + (fd.get('company') || '') + ' ' + (fd.get('contact_name') || ''));
+    const mailto = `mailto:planted.llc.088@gmail.com?subject=${subject}&body=${body}`;
+
+    window.location.href = mailto;
+
+    document.getElementById('moushikomi').style.display = 'none';
+    document.getElementById('sentMsg').style.display = 'block';
+  }
+</script>
+</body>
+</html>
